@@ -1,6 +1,6 @@
 """
 @Author: YMH
-@Date:
+@Date: 2021-2-6
 @Description: BPR: Bayesian Personalized Ranking from Implicit Feedback模型代码复现
 """
 

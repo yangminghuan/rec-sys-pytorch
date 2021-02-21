@@ -1,6 +1,6 @@
 """
 @Author: YMH
-@Date: 2021-2-14
+@Date: 2021-2-21
 @Description: 定义一些必要的工具函数，包括数据预处理、特征工程、模型的训练和预测函数等
 """
 
@@ -23,6 +23,7 @@ def preprocess(path, sample_num, test_size=0.2):
     dense_features = ['I' + str(i) for i in range(1, 14)]
     sparse_features = ['C' + str(i) for i in range(1, 27)]
     names = ['label'] + dense_features + sparse_features
+    field_num = len(names) - 1
     df = pd.read_csv(path, sep='\t', header=None, nrows=sample_num, names=names)
 
     # 缺失值填充
@@ -33,18 +34,14 @@ def preprocess(path, sample_num, test_size=0.2):
     mms = MinMaxScaler()
     df[dense_features] = mms.fit_transform(df[dense_features])
     df = pd.get_dummies(df)
-    # df = pd.concat([df, pd.get_dummies(df[sparse_features])], axis=1)
-    # le = LabelEncoder()
-    # for feat in sparse_features:
-    #     df[feat] = le.fit_transform(df[feat])
 
     # 划分训练集和测试集
     train_df, test_df = train_test_split(df, test_size=test_size, shuffle=False)
 
-    return train_df, test_df
+    return field_num, train_df, test_df
 
 
-class FMDataset(Dataset):
+class FFMDataset(Dataset):
     """
     定义FM模型测试用的dataset
     """
