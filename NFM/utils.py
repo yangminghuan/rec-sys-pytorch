@@ -1,6 +1,6 @@
 """
 @Author: YMH
-@Date: 2021-4-6
+@Date: 2021-4-9
 @Description: 定义一些必要的工具函数，包括数据预处理、特征工程、模型的训练和预测函数等
 """
 
@@ -48,9 +48,9 @@ def preprocess(path, sample_num, test_size=0.2):
     return embed_dict, train_df, test_df
 
 
-class DCNDataset(Dataset):
+class NFMDataset(Dataset):
     """
-    定义DCN深度交叉网络模型测试用的dataset
+    定义NFM神经因子分解机模型测试用的dataset
     """
     def __init__(self, df, dense_feature, sparse_feature):
         self.dense_input = df[dense_feature].values.astype('float32')
