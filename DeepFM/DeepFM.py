@@ -120,7 +120,7 @@ class DNN(nn.Module):
 
 class DeepFM(nn.Module):
     """
-    Neural Factorization Machines模型：神经因子分解机模型（NFM）
+    DeepFM模型：A Factorization-Machine based Neural Network
     """
     def __init__(self, embed_num, embed_dim, concat_dim, hidden_units, dropout, output_dim):
         """
